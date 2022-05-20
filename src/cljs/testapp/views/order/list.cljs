@@ -1,7 +1,6 @@
 (ns testapp.views.order.list
   (:require [re-frame.core :as rf]
             [testapp.subs :as subs]
-            [testapp.events :as events]
             [testapp.routes :as routes]))
 
 (defn order-list-page []
@@ -15,8 +14,7 @@
           [:div.orders__item {:key id}
            [:div.orders__items-wrap
             [:h2 title]
-            [:div.orders__label (.toLocaleDateString deadline)]
-            ]
+            [:div.orders__label (.toLocaleDateString deadline)]]
            [:div.orders__label "From: " customer]
            [:div.orders__label "To: " (get-in executors [executor-id :name])]
            [:div.orders__description description]])))

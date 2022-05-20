@@ -15,13 +15,9 @@
  (fn [route]
    (routes/go-to! route)))
 
-(rf/reg-fx :log-error
- (fn [error]
-   (js/console.error (pr-str error))))
-
 (rf/reg-event-fx ::error-response
    (fn [_ [_ error]]
-     {:log-error error}))
+     (js/console.error (pr-str error))))
 
 (rf/reg-event-fx ::fetch-orders
   (fn [_ _]
@@ -39,26 +35,22 @@
 (rf/reg-event-fx ::fetch-add-order
   (fn [_ [_ form callback]]
     {:http-xhrio {:method          :post
-                   :uri             "/api/v1/new-order"
-                   :params          form
-                   :format          (ajax/edn-request-format)
-                   :response-format (ajax/edn-response-format)
-                   :on-success      [::success-add-order callback]
-                   :on-failure      [::error-add-order callback]}}))
+                  :uri             "/api/v1/new-order"
+                  :params          form
+                  :format          (ajax/edn-request-format)
+                  :response-format (ajax/edn-response-format)
+                  :on-success      [::success-add-order callback]
+                  :on-failure      [::error-add-order callback]}}))
 
 (rf/reg-event-fx ::success-add-order
-  (fn [db [_ callback response]]
+  (fn [_ [_ callback response]]
     (callback response)
     (when (:success? response)
       {:dispatch [::fetch-orders]
        :go-to :orders})))
 
 (rf/reg-event-fx ::error-add-order
-  (fn [db [_ callback response]]
+  (fn [_ [_ callback response]]
     (if (get-in response [:response :errors])
       (callback (:response response))
       {:dispatch [::error-response response]})))
-
-(rf/reg-event-db ::add-order
- (fn [db [_ order]]
-   (assoc db :orders (conj (:orders db) order))))

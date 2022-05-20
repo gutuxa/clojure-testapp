@@ -29,13 +29,15 @@
 (defn callback [response]
   (if (:success? response)
     (reset-state!)
-    (when (let [res-errors (:errors response)]
-          (reset! errors res-errors)))))
+    (when-let [res-errors (:errors response)] 
+      (reset! errors res-errors))))
 
 (defn submit []
     (if (s/valid? :order/form @form)
-      (-> (rf/dispatch [::events/fetch-add-order @form callback]))
-      (reset! errors (spec/get-error-messages (s/explain-data :order/form @form)))))
+      (rf/dispatch [::events/fetch-add-order @form callback])
+      (->> (s/explain-data :order/form @form)
+           (spec/get-error-messages)
+           (reset! errors))))
 
 (defn new-order-page []
   [:div
