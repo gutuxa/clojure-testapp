@@ -1,0 +1,232 @@
+:root {
+    --font-family: Barlow, system-ui;
+    --font-body-regular: 400 16px/20px var(--font-family);
+    --font-label-regular: 400 14px/18px var(--font-family);
+    --font-label-bold: 700 14px/18px var(--font-family);
+    --font-caption-regular: 400 10px/14px var(--font-family);
+    --font-caption-bold: 700 10px/14px var(--font-family);
+
+    --color-gray-100: #222222;
+    --color-gray-80: #666666;
+    --color-gray-60: #c4c4c4;
+    --color-gray-40: #dfdfdf;
+    --color-gray-20: #f4f4f4;
+    --color-red-100: red;
+
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--color-gray-20);
+    font: var(--font-body-regular);
+    color: var(--color-gray-100);
+}
+
+#app {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 0 32px;
+}
+
+h1 {
+    margin: 16px auto 32px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: var(--border-radius);
+    font: var(--font-label-bold);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: pointer;
+    transition: background-color, color .2s ease;
+    text-decoration: none;
+    appearance: none;
+}
+
+.button__primary {
+    background-color: var(--color-gray-100);
+    color: white;
+}
+
+.button__primary:hover {
+    background-color: black;
+}
+
+.button__secondary {
+    border: 2px solid var(--color-gray-100);
+    background-color: transparent;
+    color: var(--color-gray-100);
+}
+
+.button__secondary:hover {
+    border: 2px solid black;
+    color: black;
+}
+
+.label {
+    display: inline-block;
+    padding: 0 0 2px 4px;
+    font: var(--font-caption-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray-80);
+}
+
+.input,
+.textarea {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    background-color: white;
+    color: var(--color-gray-100);
+    font-family: Barlow, system-ui;
+    font-size: 16px;
+    outline: none;
+    transition: all .2s ease;
+}
+
+.input {
+    height: 40px;
+}
+
+.textarea {
+    height: 80px;
+}
+
+.select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    font: var(--font-body-regular);
+    background-color: white;
+    outline: none;
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+    border: 1px solid var(--color-gray-40);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+    border: 1px solid var(--color-gray-60);
+}
+
+.input.invalid,
+.textarea.invalid,
+.select.invalid {
+    border: 1px solid var(--color-red-100);
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--color-gray-60);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: var(--color-gray-60);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: var(--color-gray-60);
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: var(--color-gray-60);
+}
+
+.select:invalid {
+    color: var(--color-gray-60);
+}
+
+.orders__item {
+    padding: 16px;
+    border-radius: var(--border-radius);
+    background-color: white;
+}
+
+.orders__item:not(:first-child) {
+    margin-top: 8px;
+}
+
+.orders__empty {
+    display: flex;
+    justify-content: center;
+}
+
+.orders__items-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.orders__label {
+    font: var(--font-label-regular);
+    color: var(--color-gray-80);
+}
+
+.orders__description {
+    margin-top: 8px;
+}
+
+.field-error {
+    margin: -2px 0 4px 4px;
+    font: var(--font-label-regular);
+    color: var(--color-red-100);
+}
+
+.orders__button {
+    margin: 16px 0 0;
+}
+
+.new-order__buttons {
+    display: flex;
+    margin-top: 16px;
+}
+
+.new-order__button {
+    flex: 1;
+}
+
+.new-order__button:not(:first-child) {
+    margin-left: 16px;
+}
+
