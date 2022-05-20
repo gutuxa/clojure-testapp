@@ -23,7 +23,7 @@
         {:status 200
          :headers {"Content-Type" "application/edn"}
          :body (prn-str {:success? true})})
-      {:status 200
+      {:status 400
        :headers {"Content-Type" "application/edn"}
        :body (prn-str {:success? false
                        :errors (spec/get-error-messages (s/explain-data :order/form order))})})))

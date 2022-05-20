@@ -44,7 +44,7 @@
                    :format          (ajax/edn-request-format)
                    :response-format (ajax/edn-response-format)
                    :on-success      [::success-add-order callback]
-                   :on-failure      [::error-response]}}))
+                   :on-failure      [::error-add-order callback]}}))
 
 (rf/reg-event-fx ::success-add-order
   (fn [db [_ callback response]]
@@ -52,6 +52,12 @@
     (when (:success? response)
       {:dispatch [::fetch-orders]
        :go-to :orders})))
+
+(rf/reg-event-fx ::error-add-order
+  (fn [db [_ callback response]]
+    (if (get-in response [:response :errors])
+      (callback (:response response))
+      {:dispatch [::error-response response]})))
 
 (rf/reg-event-db ::add-order
  (fn [db [_ order]]
