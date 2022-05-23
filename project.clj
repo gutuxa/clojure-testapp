@@ -3,6 +3,7 @@
   :license {:name "Eclipse Public License"
             :url "https://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.11.1"]
+                 [thheller/shadow-cljs "2.19.0"]
                  [ring/ring-core "1.9.5"]
                  [ring/ring-jetty-adapter "1.9.5"]
                  [metosin/muuntaja "0.6.8"]

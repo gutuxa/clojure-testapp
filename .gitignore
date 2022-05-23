@@ -11,6 +11,7 @@ pom.xml.asc
 .DS_Store
 .lein-*
 .nrepl-port
+.calva*
 .cpcache/
 .shadow-cljs/
 .idea/

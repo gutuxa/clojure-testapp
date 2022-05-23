@@ -10,8 +10,8 @@
      :headers {"Content-Type" "application/edn"}
      :body body}))
 
-(defn new-order [response]
-  (let [order (:body-params response)]
+(defn new-order [request]
+  (let [order (:body-params request)]
     (if (s/valid? :order/form order)
       (let [{:keys [title description customer executor-id deadline]} order]
         (swap! db/orders conj {:id (.toString (java.util.UUID/randomUUID))
